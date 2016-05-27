@@ -1,0 +1,90 @@
+@charset "utf-8";
+
+.title-bar {
+	@include breakpoint(large) {
+		padding: 1.5rem;
+	}
+}
+
+.menu-icon:hover::after {
+	background: $lime;
+	box-shadow: 0 7px 0 $lime, 0 14px 0 $lime;
+}
+
+.off-canvas-wrapper {
+	background: $grey-1;
+}
+
+.off-canvas-wrapper-inner {
+	background: $grey-1;
+}
+
+.off-canvas {
+	overflow-y: visible;
+	.menu .icon-three-taps {
+		position: relative;
+		bottom: 10px;
+	}
+	.menu .icon-chalis {
+		position: relative;
+    bottom: 10px;
+    left: 8px;
+	}
+	.menu .icon-hop {
+		position: relative;
+    bottom: 10px;
+    left: 8px;
+	}
+	.menu .icon-growler {
+		position: relative;
+    bottom: 12px;
+	}
+	.menu-text {
+		color: $white;
+	}
+	.nested-menu-text {
+		color: $white;
+		margin: 1rem 0;
+	}
+	.button {
+		margin-bottom: 1rem;
+		background: darken($lime, 15%);
+		border-radius: $global-radius;
+		&:hover {
+			background: darken($lime, 5%);
+		}
+	}
+	.menu  a {
+		color: $white;
+		&:hover {
+			color: $lime;
+		}
+	}
+	.menu > li > a {
+		padding: 1rem;
+	}
+	.menu label {
+		color: $white;
+	}
+	.menu input, select {
+		max-width: 200px;
+		margin: 1rem 0;
+		@include breakpoint(large) {
+			max-width: 220px;
+		}
+	}
+}
+
+.off-canvas.position-right,
+.off-canvas.position-left {
+	@include breakpoint(large) {
+		padding-left: 0.5rem;
+	}
+}
+
+.position-right,
+.position-left {
+	@include breakpoint(large) {
+		margin-top: 5rem;
+	}
+}
