@@ -1,65 +1,73 @@
-# ZURB Template
+# TasteThatTap
 
-[![devDependency Status](https://david-dm.org/zurb/foundation-zurb-template/dev-status.svg)](https://david-dm.org/zurb/foundation-zurb-template#info=devDependencies)
+## ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) JSD: Final Project
 
-**Please open all issues with this template on the main [Foundation for Sites](https://github.com/zurb/foundation-sites/issues) repo.**
+### Overview
 
-This is the official ZURB Template for use with [Foundation for Sites](http://foundation.zurb.com/sites). We use this template at ZURB to deliver static code to our clients. It has a Gulp-powered build system with these features:
+**TasteThatTap** is a JavaScript web application that allows users to search for breweries, beers and events all within a SPA (single page application).
 
-- Handlebars HTML templates with Panini
-- Sass compilation and prefixing
-- JavaScript concatenation
-- Built-in BrowserSync server
-- For production builds:
-  - CSS compression
-  - JavaScript compression
-  - Image compression
+### Technolgies
 
-## Installation
+[BreweryDB API](http://www.brewerydb.com/developers)
 
-To use this template, your computer needs:
+[Google Maps API](https://developers.google.com/maps/web/)
 
-- [NodeJS](https://nodejs.org/en/) (0.12 or greater)
-- [Git](https://git-scm.com/)
+[geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation)
 
-This template can be installed with the Foundation CLI, or downloaded and set up manually.
+[Firebase](https://firebase.google.com/)
 
-### Using the CLI
+[ZURB Foundation](http://foundation.zurb.com/)
 
-Install the Foundation CLI with this command:
+### RoadMap
+### Phase 1:
 
-```bash
-npm install foundation-cli --global
-```
+#### Utilize the following API endpoints:
+#### [BreweryDB](http://www.brewerydb.com/developers/docs)
 
-Use this command to set up a blank Foundation for Sites project with this template:
+[Endpoint for Search by Geographic Coordinate](http://www.brewerydb.com/developers/docs-endpoint/search_geopoint)
 
-```bash
-foundation new --framework sites --template zurb
-```
+- When given ***lat*** and ***lng*** coordinates and ***radius***, returns brewery information matching criteria.
+- Will allow user to search for:
+	- Breweries within a specific radius
+	- Events within a specific radius
 
-The CLI will prompt you to give your project a name. The template will be downloaded into a folder with this name.
+[Endpoint for Brewery -> Location](http://www.brewerydb.com/developers/docs-endpoint/brewery_location)
 
-### Manual Setup
+- Gets a listing of all locations for the specified brewery.
+- Will allow for user search with input such as:
+	- name
+	- region
+	- postalCode
 
-To manually set up the template, first download it with Git:
+[Endpoint for Beer](http://www.brewerydb.com/developers/docs-endpoint/beer_index)
 
-```bash
-git clone https://github.com/zurb/foundation-zurb-template projectname
-```
+- Gets a listing of all beers. Will allow user to search for beers by name.
 
-Then open the folder in your command line, and install the needed dependencies:
+[Endpoint for Search](http://www.brewerydb.com/developers/docs-endpoint/search_index)
 
-```bash
-cd projectname
-npm install
-bower install
-```
+- Allows for searching all items or just breweries, beers, guilds, or events. Will allow user to search for beers by brewer.
 
-Finally, run `npm start` to run Gulp. Your finished site will be created in a folder called `dist`, viewable at this URL:
+[Endpoint for Search by Style](http://www.brewerydb.com/developers/docs-endpoint/search_style)
 
-```
-http://localhost:8000
-```
+- Allows for searching beer styles (i.e. IPA, ale, stout, etc...)
 
-To create compressed, production-ready assets, run `npm run build`.
+#### [geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation)
+
+- Obtain the user's current location as ***lat*** and ***lng***, with the ```getCurrentPosition()``` method when search is requested.
+
+#### [Google Places API](https://developers.google.com/places/javascript/)
+
+- Use functions in the Google Places JavaScript library to plot and show a map of search results related to ***brewery search*** or ***event search*** triggered by the user.
+
+
+#### Utilize Firebase
+
+Allow user to sign in with authorization. Store user key and data in the database.
+
+Once signed in, allow the user to **star** breweries, beers or events in a **favorites** node.
+
+### Phase 2:
+
+Develop a **Current Tap List** feature that shows the user the current beers on tap at that brewery(i.e. being served in their restaurant, tasting room)
+
+Could be a combination of user submission and brewer submission by date.
