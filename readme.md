@@ -68,6 +68,6 @@ Once signed in, allow the user to **star** breweries, beers or events in a **fav
 
 ### Phase 2:
 
-Develop a **Current Tap List** feature that shows the user the current beers on tap at that brewery(i.e. being served in their restaurant, tasting room)
+Develop a **Current Tap List** feature that shows the user the current beers on tap at that brewery (i.e. being served in their restaurant, tasting room)
 
 Could be a combination of user submission and brewer submission by date.
