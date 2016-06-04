@@ -51,5 +51,11 @@
     "url": "https://github.com/zurb/foundation-sites/issues",
     "email": "foundation@zurb.com"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "brewerydb-node": "0.0.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.4"
+  }
 }
