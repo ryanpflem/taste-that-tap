@@ -3,7 +3,7 @@ $(document).foundation();
 $(document).ready(function () {
 
 	var params;
-	var q = 'stone';
+	var q = 'dogfish';
 	var type = 'brewery';
 	var withBreweries = 'Y';
 	

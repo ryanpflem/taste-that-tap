@@ -4,12 +4,12 @@ import plugins  from 'gulp-load-plugins';
 import yargs    from 'yargs';
 import browser  from 'browser-sync';
 import gulp     from 'gulp';
-import nodeDev  from 'node-dev';
 import panini   from 'panini';
 import rimraf   from 'rimraf';
 import sherpa   from 'style-sherpa';
 import yaml     from 'js-yaml';
 import fs       from 'fs';
+import nodemon  from 'gulp-nodemon'
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -29,18 +29,36 @@ function loadConfig() {
 gulp.task('build',
  gulp.series(clean, gulp.parallel(pages, sass, javascript, node, images, copy), styleGuide));
 
-//
+//nodemon-gulp task
 gulp.task('server', function (cb) {
-  let scripts = 'server.js';
-  let scriptArgs = [];
-  let nodeArgs = [];
-  let opts = [];
-  return nodeDev(scripts, scriptArgs, nodeArgs, opts);
+  var called = false;
+  return nodemon({
+
+    // nodemon our expressjs server
+    script: 'server.js',
+
+    // watch core server file(s) that require server restart on change
+    watch: ['server.js']
+  })
+    .on('start', function onStart() {
+      // ensure start only got called once
+      if (!called) { cb(); }
+      called = true;
+    })
+    .on('restart', function onRestart() {
+      // reload connected browsers after a slight delay
+      setTimeout(function reload() {
+        browser.reload({
+          stream: false,
+          reloadDelay: 2000
+        });
+      });
+    });
 });
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
-  gulp.series('build', browserSync, 'server', watch));
+  gulp.series('build', 'server', browserSync, watch));
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -133,9 +151,12 @@ function images() {
 // Start a server with BrowserSync to preview the site in
 function browserSync(done) {
   browser.init({
-    port: PORT,
+    // informs browser-sync to proxy our expressjs app which would run at the following location
     proxy: "http://localhost:3000",
-    files: [PATHS.dist + 'index.html', PATHS.dist + '/assets/**']
+    // informs browser-sync to use the following port for the proxied app
+    // notice that the default port is 3000, which would clash with our expressjs
+    files: [PATHS.dist + 'index.html', PATHS.dist + '/assets/**'],
+    port: 5000
   });
   done();
 }
