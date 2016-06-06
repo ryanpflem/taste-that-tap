@@ -4,6 +4,7 @@ import plugins  from 'gulp-load-plugins';
 import yargs    from 'yargs';
 import browser  from 'browser-sync';
 import gulp     from 'gulp';
+import nodeDev  from 'node-dev';
 import panini   from 'panini';
 import rimraf   from 'rimraf';
 import sherpa   from 'style-sherpa';
@@ -26,11 +27,20 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(pages, sass, javascript, images, copy), styleGuide));
+ gulp.series(clean, gulp.parallel(pages, sass, javascript, node, images, copy), styleGuide));
+
+//
+gulp.task('server', function (cb) {
+  let scripts = 'server.js';
+  let scriptArgs = [];
+  let nodeArgs = [];
+  let opts = [];
+  return nodeDev(scripts, scriptArgs, nodeArgs, opts);
+});
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
-  gulp.series('build', server, watch));
+  gulp.series('build', browserSync, 'server', watch));
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -105,6 +115,11 @@ function javascript() {
     .pipe(gulp.dest(PATHS.dist + '/assets/js'));
 }
 
+function node() {
+  return gulp.src('server.js')
+    .pipe(gulp.dest('src/server'));
+}
+
 // Copy images to the "dist" folder
 // In production, the images are compressed
 function images() {
@@ -116,9 +131,11 @@ function images() {
 }
 
 // Start a server with BrowserSync to preview the site in
-function server(done) {
+function browserSync(done) {
   browser.init({
-    server: PATHS.dist, port: PORT
+    port: PORT,
+    proxy: "http://localhost:3000",
+    files: [PATHS.dist + 'index.html', PATHS.dist + '/assets/**']
   });
   done();
 }

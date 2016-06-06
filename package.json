@@ -56,6 +56,7 @@
     "body-parser": "^1.15.1",
     "brewerydb-node": "0.0.1",
     "cors": "^2.7.1",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "node-dev": "^3.1.3"
   }
 }
