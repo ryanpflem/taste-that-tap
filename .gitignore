@@ -1,6 +1,6 @@
 # Ignore everything
 .DS_Store
-node_modules
-!node_modules/brewerydb-node/*
+node_modules/*
+!node_modules/brewerydb-node/
 npm-debug.log
 bower_components
