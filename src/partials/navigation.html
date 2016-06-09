@@ -40,47 +40,50 @@
       <menu class="off-canvas position-right reveal-for-large" id="offCanvasRight" data-off-canvas data-position="right">
         <ul class="menu vertical dropdown" data-accordion-menu data-multi-open="false">
           <li class="menu-text show-for-large">Search for</li>
-          <li>
+          <li class="menu-item" id="breweries">
             <a href="#">Breweries<i class="icon-three-taps icon-36"></i></a>
-            <ul class="menu vertical nested">
+            <ul class="menu vertical nested" data-trap-focus>
               <li>
+                <label for="switch">within 10 mi.</label>
+                <div class="switch">
+                  <input class="switch-input" id="brewerRadius10" value="10" type="radio" checked name="brewerRadius" tabindex="1">
+                  <label class="switch-paddle" for="brewerRadius10">
+                    <span class="show-for-sr">show me brewers within 10 mi.</span>
+                  </label>
+                </div>
                 <label for="switch">within 25 mi.</label>
                 <div class="switch">
-                  <input class="switch-input" id="brewerRadius1" type="radio" checked name="brewerRadius">
-                  <label class="switch-paddle" for="brewerRadius1">
+                  <input class="switch-input" id="brewerRadius25" value="25" type="radio" name="brewerRadius" tabindex="1">
+                  <label class="switch-paddle" for="brewerRadius25">
                     <span class="show-for-sr">show me brewers within 25 mi.</span>
                   </label>
                 </div>
                 <label for="switch">within 50 mi.</label>
                 <div class="switch">
-                  <input class="switch-input" id="brewerRadius2" type="radio" name="brewerRadius">
-                  <label class="switch-paddle" for="brewerRadius2">
+                  <input class="switch-input" id="brewerRadius50" value="50" type="radio" name="brewerRadius" tabindex="1">
+                  <label class="switch-paddle" for="brewerRadius50">
                     <span class="show-for-sr">show me brewers within 50 mi.</span>
-                  </label>
-                </div>
-                <label for="switch">within 75 mi.</label>
-                <div class="switch">
-                  <input class="switch-input" id="brewerRadius3" type="radio" name="brewerRadius">
-                  <label class="switch-paddle" for="brewerRadius3">
-                    <span class="show-for-sr">show me brewers within 75 mi.</span>
                   </label>
                 </div>
               </li>
               <li>
-                <button class="button" id="breweries" type="submit">show me</button>
+                <button class="button" id="brewerRadiusBtn" type="submit" tabindex="1">show me</button>
               </li>
               <li class="nested-menu-text">or</li>
-              <li><input type="text" id="searchBrewer" placeholder="search brewers"></li>
+              <li><input type="text" id="brewerSearch" placeholder="search brewers" tabindex="1"></li>
+              <li>
+                <button class="button" id="brewerSearchBtn" type="submit" tabindex="1">show me</button>
+              </li>
             </ul>
           </li>
-          <li>
+          <li class="menu-item" id="beers">
             <a href="#">Beers<i class="icon-chalis icon-36"></i></a>
             <ul class="menu vertical nested">
               <li><input type="text" id="searchBeer" placeholder="search by name"></li>
               <li><input type="text" id="searchBeer" placeholder="search by brewer"></li>
             </ul>
           </li>
-          <li>
+          <li class="menu-item" id="styles">
             <a href="#">Styles<i class="icon-hop icon-36"></i></a>
             <ul class="menu vertical nested">
               <li>
@@ -90,7 +93,7 @@
               </li>              
             </ul>
           </li>
-          <li>
+          <li class="menu-item" id="events">
             <a href="#">Events<i class="icon-growler icon-36"></i></a>
             <ul class="menu vertical nested">
               <li>

@@ -135,7 +135,7 @@ function javascript() {
 
 function node() {
   return gulp.src('server.js')
-    .pipe(gulp.dest('src/server'));
+    .pipe(gulp.dest(PATHS.dist + '/server'));
 }
 
 // Copy images to the "dist" folder

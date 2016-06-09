@@ -39,6 +39,10 @@
 		position: relative;
     bottom: 12px;
 	}
+	.menu .active > a {
+		background: transparent;
+		color: $lime;
+	}
 	.menu-text {
 		color: $white;
 	}
@@ -52,6 +56,9 @@
 		border-radius: $global-radius;
 		&:hover {
 			background: darken($lime, 5%);
+		}
+		&:focus {
+			border: 1px solid $white;
 		}
 	}
 	.menu  a {

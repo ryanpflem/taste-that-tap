@@ -1,3 +1,5 @@
+"use strict";
+
 var express = require("express");
 var cors = require("cors");
 var bodyParser = require("body-parser");
@@ -34,37 +36,43 @@ Object.values = (object) => Object.keys(object).map(
     (key) => object[key]
 );
 
-
 //callback function
-var callback = function (err, data) {
+function callback (err, data) {
 	myData.length = 0; //empty the myData array
+	console.log(myData);
   if (err) {
     throw err; // Check for the error and throw if it exists.
   } else {
     console.log('got data: ' + data); // Otherwise proceed as usual.
     myData.push(data); // Push all the objects from the response into the myData array
+    //sendResponse(myData);
   }
 };
-
 
 //https://www.npmjs.com/package/brewerydb-node
 function mySearch (params) {
 	console.log('mySearch params =');
 	console.log(params);
-	brewdb.search.all(params, callback);
+
+	switch (params.searchType) {
+		case 'searchGeoPoint':
+			delete params.searchType;
+			brewdb.search.geo(params, callback);
+			break;
+		case 'searchBrewerQuery':
+			delete params.searchType;
+			brewdb.search.all(params, callback);
+			break;
+		default:
+			// statements_def
+			break;
+	}
 };
 
-
-//GET method route that sends JSON response to the browser
-app.get('/brewdb-api', function (req, res)	 {
-	res.json(myData);
-	console.log('sent json data back to client');
-});
-
-
 //POST method route to recieve input from the browser
-app.post('/search-api', function(req, res) {
+app.post('/search-api', function (req, res) {
 	console.log('post route recieved data');
+
 	var params = req.body;
 	console.log('param keys = ' + Object.keys(params));
 	console.log('params =');
@@ -73,10 +81,16 @@ app.post('/search-api', function(req, res) {
 	mySearch(params);  //exec mySearch with params from the client
 });
 
+//GET method route that sends JSON response to the browser
+app.get('/brewdb-api', function (req, res) {
+	res.json(myData);
+	console.log('sent json data back to client');
+	res.end();
+});
 
 //listen on PORT 3000
-app.listen(3000);
+var server = app.listen(3000);
 
-console.log("Express app running on 3000");
+console.log('Express server listening on port ' + server.address().port);
 
 module.exports = app;
