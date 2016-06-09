@@ -1,9 +1,6 @@
 # Ignore everything
 .DS_Store
 node_modules
+!node_modules/brewdb-node/*
 npm-debug.log
 bower_components
-
-# But not these files...
-!.gitignore
-!node_modules/brewdb-node/*
