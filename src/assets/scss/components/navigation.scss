@@ -56,10 +56,7 @@
 		border-radius: $global-radius;
 		&:hover {
 			background: darken($lime, 5%);
-		}
-		&:focus {
-			border: 1px solid $white;
-		}
+		}		
 	}
 	.menu  a {
 		color: $white;

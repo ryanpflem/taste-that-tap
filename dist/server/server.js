@@ -36,7 +36,6 @@ Object.values = (object) => Object.keys(object).map(
     (key) => object[key]
 );
 
-
 //callback function
 function callback (err, data) {
 	myData.length = 0; //empty the myData array
@@ -46,10 +45,9 @@ function callback (err, data) {
   } else {
     console.log('got data: ' + data); // Otherwise proceed as usual.
     myData.push(data); // Push all the objects from the response into the myData array
-    sendResponse(myData);
+    //sendResponse(myData);
   }
 };
-
 
 //https://www.npmjs.com/package/brewerydb-node
 function mySearch (params) {
@@ -61,7 +59,7 @@ function mySearch (params) {
 			delete params.searchType;
 			brewdb.search.geo(params, callback);
 			break;
-		case 'searchBrewerName':
+		case 'searchBrewerQuery':
 			delete params.searchType;
 			brewdb.search.all(params, callback);
 			break;
@@ -70,16 +68,6 @@ function mySearch (params) {
 			break;
 	}
 };
-
-
-//GET method route that sends JSON response to the browser
-function sendResponse (myData) {
-	 app.get('/brewdb-api', function (req, res) {
-		res.json(myData);
-		console.log('sent json data back to client');
-	});
-}
-
 
 //POST method route to recieve input from the browser
 app.post('/search-api', function (req, res) {
@@ -93,6 +81,12 @@ app.post('/search-api', function (req, res) {
 	mySearch(params);  //exec mySearch with params from the client
 });
 
+//GET method route that sends JSON response to the browser
+app.get('/brewdb-api', function (req, res) {
+	res.json(myData);
+	console.log('sent json data back to client');
+	res.end();
+});
 
 //listen on PORT 3000
 var server = app.listen(3000);

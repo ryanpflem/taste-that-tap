@@ -147,7 +147,7 @@
             <!-- Content goes in this container -->
             <main class="off-canvas-content" data-off-canvas-content>
               <div class="bg-img">
-                <!-- <img src="assets/img/tap.jpg" alt="" /> -->
+        	      <div class="row small-up-1 medium-up-3 large-up-4 main-content" id="contentFeed"></div>
               </div>
             </main>
             <!-- Footer goes in this container -->
@@ -170,6 +170,30 @@
       <!-- close wrapper, no more content after this -->
       </div>
     </div>
+    <!-- Handlebars -->
+    <script id="searchBreweryQueryTemplate" type="text/x-handlebars-template">	
+      <div class="column">
+        <div class="callout">
+          <h5 class="title"> {{breweryName}} </h5>
+          <p><img src=" {{breweryImages.squareLarge}} " alt="brewery image"></p>
+          <p class="lead"></p>
+          <p class="subheader"> {{breweryDescShort}} </p>
+        </div>
+      </div>
+    </script>
+    <script id="searchGeoPointTemplate" type="text/x-handlebars-template">	
+      <div class="column">
+        <div class="callout search-geo-point breweryId-{{breweryId}}">
+          <h5 class="title"> {{breweryName}} </h5>
+          <p class="image"><img src=" {{breweryImages.squareLarge}} " alt="brewery image"></p>
+          <p class="location-type">Type:  {{breweryType}} </p>
+          <p class="location"> {{breweryLocality}} ,  {{breweryRegion}} </p>
+          <p class="distance">Distance from you:  {{breweryDistance}}  (mi.)</p>
+          <p class="description"> {{breweryDesc}} </p>
+        </div>
+      </div>
+    </script>
+    <!-- /Handlebars -->
     <script src="assets/js/app.js"></script>
   </body>
 </html>

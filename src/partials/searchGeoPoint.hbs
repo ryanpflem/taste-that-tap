@@ -1,0 +1,12 @@
+<script id="searchGeoPointTemplate" type="text/x-handlebars-template">	
+  <div class="column">
+    <div class="callout search-geo-point breweryId-{{{{raw}}}}{{breweryId}}{{{{/raw}}}}">
+      <h5 class="title">{{{{raw}}}} {{breweryName}} {{{{/raw}}}}</h5>
+      <p class="image"><img src="{{{{raw}}}} {{breweryImages.squareLarge}} {{{{/raw}}}}" alt="brewery image"></p>
+      <p class="location-type">Type: {{{{raw}}}} {{breweryType}} {{{{/raw}}}}</p>
+      <p class="location">{{{{raw}}}} {{breweryLocality}} {{{{/raw}}}}, {{{{raw}}}} {{breweryRegion}} {{{{/raw}}}}</p>
+      <p class="distance">Distance from you: {{{{raw}}}} {{breweryDistance}} {{{{/raw}}}} (mi.)</p>
+      <p class="description">{{{{raw}}}} {{breweryDesc}} {{{{/raw}}}}</p>
+    </div>
+  </div>
+</script>

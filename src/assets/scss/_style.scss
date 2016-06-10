@@ -1,5 +1,66 @@
 .bg-img {
 	background: url(../img/tap.jpg) no-repeat center center;
   background-size: cover;
-  height: 900px;
+  height: auto;
+  width: 100%;
+  min-height: 1100px;
+  padding: 25px 0;
+}
+
+.bg-img-repeat {
+	background-repeat: repeat;
+	background-size: contain;
+}
+
+.main-content {
+	.callout, 
+	.lead, 
+	.subheader, 
+	.location-type, 
+	.distance, 
+	.location,
+	.description {
+		color: $white;
+	}	
+	.callout {
+		background: rgba(0, 0, 0, 0.6);
+		border-radius: $global-radius;
+		&:hover {
+			background: rgba(0, 0, 0, 0.8);
+			border: 1px solid $lime;
+		}
+	}
+	.title {
+		color: $lime;
+	}
+	.image img {
+		border-radius: $global-radius;
+	}
+	.location-type {		
+    line-height: 1.4;
+	}
+	.distance {    
+    line-height: 1.4;
+	}
+	.location {    
+    line-height: 1.4;
+    color: $lime;
+	}
+	.search-geo-point {
+		.description {
+			display: none;
+			line-height: 1.6;
+			color: $white;
+		}
+	}
+	// .search-geo-point:hover {
+	// 	.location-type, 
+	// 	.location, 
+	// 	.distance {
+	// 		display: none;
+	// 	}
+	// 	.description {			
+	// 		display: block;
+	// 	}
+	// }
 }
