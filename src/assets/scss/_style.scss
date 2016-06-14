@@ -12,6 +12,51 @@
 	background-size: contain;
 }
 
+.pagination {
+	margin: 0 auto;
+	.column {
+		margin: 0 auto;
+		text-align: center;
+	}
+	.button {
+		color: $white;
+		display: inline-block;
+		margin-bottom: 0;
+		padding: 10px;
+		background: darken($lime, 15%);
+		border-radius: $global-radius;
+		&:hover {
+			background: darken($lime, 5%);
+		}		
+	}
+	.disabled {
+		opacity: 0.65;
+	}
+	.pagination-previous::before, .pagination-previous.disabled::before {
+		content: '\00ab';
+    display: inline-block;
+    margin-right: 0.5rem;
+	}
+	.pagination-next::after, .pagination-next.disabled::after {
+	content: '\00bb';
+  display: inline-block;
+  margin-left: 0.5rem;
+	}
+}
+
+.meta-data,
+.callout {
+	color: $white;
+	margin: 1rem auto;
+	.callout {
+		background: rgba(0, 0, 0, 0.85);
+		border-radius: $global-radius;
+	}
+	.accent {
+		color: $lime;
+	}	
+}
+
 .main-content {
 	.callout, 
 	.lead, 
@@ -23,44 +68,65 @@
 		color: $white;
 	}	
 	.callout {
-		background: rgba(0, 0, 0, 0.6);
+		background: rgba(0, 0, 0, 0.65);
 		border-radius: $global-radius;
 		&:hover {
-			background: rgba(0, 0, 0, 0.8);
-			border: 1px solid $lime;
+			background: rgba(0, 0, 0, 0.85);
+			-webkit-transition: all 0.7s ease;
+    	transition: all 0.7s ease;
+			//border: 1px solid $lime;
+			img {
+				-webkit-filter: grayscale(0);
+			}
 		}
 	}
 	.title {
-		color: $lime;
+		//color: $lime;
 	}
 	.image img {
 		border-radius: $global-radius;
+		-webkit-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+    -webkit-filter: grayscale(1);
+	}
+	.website {
+		color: $lime;
+		border-bottom: 1px dotted $lime;
+		&:hover {
+			border-bottom: 1px solid $lime;
+		}
 	}
 	.location-type {		
+    line-height: 1.4;
+	}
+	.location {    
     line-height: 1.4;
 	}
 	.distance {    
     line-height: 1.4;
 	}
-	.location {    
-    line-height: 1.4;
-    color: $lime;
+	.accent {
+		color: $lime;
 	}
-	.search-geo-point {
-		.description {
-			display: none;
-			line-height: 1.6;
-			color: $white;
+	.description {
+		line-height: 1.6;
+		color: $white;
+	}
+	.accordion {
+		background: transparent;
+		border: none;
+		.accordion-content {
+			background: transparent;
+		}
+		.accordion-title {
+			color: $lime;
+			padding: 1rem;
+			&:hover,
+			&:focus {
+				background: none;
+				outline-color: transparent;
+			}
 		}
 	}
-	// .search-geo-point:hover {
-	// 	.location-type, 
-	// 	.location, 
-	// 	.distance {
-	// 		display: none;
-	// 	}
-	// 	.description {			
-	// 		display: block;
-	// 	}
-	// }
+
 }

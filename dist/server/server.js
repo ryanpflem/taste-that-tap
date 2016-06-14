@@ -8,6 +8,8 @@ var BreweryDb = require('brewerydb-node');
 var brewdb = new BreweryDb('a3bbf959e5e040fc05c170b0ddd3d205');
 
 var myData = [];
+var myStyleData = [];
+
 var app = express();
 
 //use the 'cors' middleware
@@ -26,7 +28,6 @@ app.use(function (req, res, next) {
 //load static files located in the 'dist' directory
 app.use(express.static("./dist"));
 
-
 //Polyfill
 Object.entries = (object) => Object.keys(object).map(
     (key) => [ key, object[key] ]
@@ -37,22 +38,37 @@ Object.values = (object) => Object.keys(object).map(
 );
 
 //callback function
-function callback (err, data) {
-	myData.length = 0; //empty the myData array
-	console.log(myData);
+function callback (err, data, currentRequestObj) {
   if (err) {
     throw err; // Check for the error and throw if it exists.
-  } else {
+  } 
+  else {
+  	myData.length = 0; //empty myData array
+		console.log(myData);
     console.log('got data: ' + data); // Otherwise proceed as usual.
-    myData.push(data); // Push all the objects from the response into the myData array
-    //sendResponse(myData);
+  	console.log('pushing myData');
+  	myData.push(currentRequestObj);
+  }
+};
+
+//callback function
+function callbackStyles (err, data) {
+  if (err) {
+    throw err; // Check for the error and throw if it exists.
+  } 
+  else {
+  	myStyleData.length = 0; //empty myStyleData array
+		console.log(myStyleData);
+    console.log('got data: ' + data); // Otherwise proceed as usual.
+  	console.log('pushing myStyleData')
+  	myStyleData.push(data);
   }
 };
 
 //https://www.npmjs.com/package/brewerydb-node
 function mySearch (params) {
 	console.log('mySearch params =');
-	console.log(params);
+	console.log(params);	
 
 	switch (params.searchType) {
 		case 'searchGeoPoint':
@@ -63,11 +79,16 @@ function mySearch (params) {
 			delete params.searchType;
 			brewdb.search.all(params, callback);
 			break;
+		case 'searchBeerByStyle':
+			delete params.searchType;
+			brewdb.beer.find(params, callback);
+			break;
 		default:
 			// statements_def
 			break;
 	}
 };
+
 
 //POST method route to recieve input from the browser
 app.post('/search-api', function (req, res) {
@@ -83,9 +104,21 @@ app.post('/search-api', function (req, res) {
 
 //GET method route that sends JSON response to the browser
 app.get('/brewdb-api', function (req, res) {
+	//res.json(myData);
 	res.json(myData);
 	console.log('sent json data back to client');
 	res.end();
+});
+
+//GET method route that sends JSON response to the browser
+app.get('/brewdb-styles-api', function (req, res) {
+	brewdb.style.all(callbackStyles);
+
+	setTimeout(function(){
+		res.json(myStyleData);
+		console.log('sent brewdb-styles json data back to client');
+		res.end();
+	}, 1000);  //1 sec buffer to allow for request delay
 });
 
 //listen on PORT 3000

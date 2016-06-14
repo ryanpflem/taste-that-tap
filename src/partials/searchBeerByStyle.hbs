@@ -1,4 +1,4 @@
-<script id="searchGeoPointTemplate" type="text/x-handlebars-template">	
+<script id="searchBeerByStyleTemplate" type="text/x-handlebars-template">	
   <div class="column">
     <div class="callout search-geo-point breweryId-{{{{raw}}}}{{breweryId}}{{{{/raw}}}}">
       <h5 class="title">{{{{raw}}}} {{breweryName}} {{{{/raw}}}}</h5>
@@ -11,9 +11,8 @@
           {{!-- <!-- The content pane needs an ID that matches the above href, role="tabpanel", data-tab-content, and aria-labelledby. --> --}}
           <div id="panel1" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel1-heading">
           {{!-- First panel --}}
-            <p class="location-type">{{{{raw}}}} {{breweryType}} {{{{/raw}}}}</p>
+            <p class="location-type">{{{{raw}}}} {{beerName}} {{{{/raw}}}}</p>
             <p class="location">{{{{raw}}}} {{breweryLocality}} {{{{/raw}}}}, {{{{raw}}}} {{breweryRegion}} {{{{/raw}}}}</p>
-            <p class="distance">Distance: <span class="accent">{{{{raw}}}} {{breweryDistance}} {{{{/raw}}}} (mi.)</span></p>
           </div>
         </li>
         <li class="accordion-item">
@@ -22,7 +21,7 @@
           {{!-- <!-- The content pane needs an ID that matches the above href, role="tabpanel", data-tab-content, and aria-labelledby. --> --}}
           <div id="panel2" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel2-heading">
           {{!-- Second panel --}}
-            <p class="description">{{{{raw}}}} {{breweryDesc}} {{{{/raw}}}}</p>
+            <p class="description">{{{{raw}}}} {{beerDesc}} {{{{/raw}}}}</p>
           </div>
         </li>
       </ul>

@@ -28,7 +28,7 @@
       <!-- off-canvas left menu -->
       <menu class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
         <ul class="menu vertical dropdown" data-dropdown-menu>
-          <li><a href="#">home</a></li>
+          <li><a href="http://localhost:5000/">home</a></li>
           <li><a href="#">about</a></li>
           <li><a href="#">blog</a></li>
           <li><a href="#">faq</a></li>
@@ -69,8 +69,8 @@
               <li>
                 <button class="button" id="brewerRadiusBtn" type="submit" tabindex="1">show me</button>
               </li>
-              <li class="nested-menu-text">or</li>
-              <li><input type="text" id="brewerSearch" placeholder="search brewers" tabindex="1"></li>
+              <li class="nested-menu-text">OR</li>
+              <li><input type="text" id="brewerSearch" placeholder="search brewery name" tabindex="1"></li>
               <li>
                 <button class="button" id="brewerSearchBtn" type="submit" tabindex="1">show me</button>
               </li>
@@ -87,10 +87,15 @@
             <a href="#">Styles<i class="icon-hop icon-36"></i></a>
             <ul class="menu vertical nested">
               <li>
-                <select name="searchStyles" id="searchStyles">
-                  <option value="default">select a style of beer</option>
+                <select name="searchStyleCategory" id="searchStyleCategory">
+                  <option value="default">filter styles by category</option>
                 </select>
-              </li>              
+              </li>
+              <li>
+                <select name="searchStyleName" id="searchStyleName">
+                  <option value="default">select a style</option>
+                </select>
+              </li>  
             </ul>
           </li>
           <li class="menu-item" id="events">

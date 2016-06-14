@@ -43,7 +43,7 @@
               <!-- off-canvas left menu -->
               <menu class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
                 <ul class="menu vertical dropdown" data-dropdown-menu>
-                  <li><a href="#">home</a></li>
+                  <li><a href="http://localhost:5000/">home</a></li>
                   <li><a href="#">about</a></li>
                   <li><a href="#">blog</a></li>
                   <li><a href="#">faq</a></li>
@@ -84,8 +84,8 @@
                       <li>
                         <button class="button" id="brewerRadiusBtn" type="submit" tabindex="1">show me</button>
                       </li>
-                      <li class="nested-menu-text">or</li>
-                      <li><input type="text" id="brewerSearch" placeholder="search brewers" tabindex="1"></li>
+                      <li class="nested-menu-text">OR</li>
+                      <li><input type="text" id="brewerSearch" placeholder="search brewery name" tabindex="1"></li>
                       <li>
                         <button class="button" id="brewerSearchBtn" type="submit" tabindex="1">show me</button>
                       </li>
@@ -102,10 +102,15 @@
                     <a href="#">Styles<i class="icon-hop icon-36"></i></a>
                     <ul class="menu vertical nested">
                       <li>
-                        <select name="searchStyles" id="searchStyles">
-                          <option value="default">select a style of beer</option>
+                        <select name="searchStyleCategory" id="searchStyleCategory">
+                          <option value="default">filter styles by category</option>
                         </select>
-                      </li>              
+                      </li>
+                      <li>
+                        <select name="searchStyleName" id="searchStyleName">
+                          <option value="default">select a style</option>
+                        </select>
+                      </li>  
                     </ul>
                   </li>
                   <li class="menu-item" id="events">
@@ -145,9 +150,30 @@
               </menu>
                 
             <!-- Content goes in this container -->
-            <main class="off-canvas-content" data-off-canvas-content>
+            <main class="off-canvas-content" id="mainContent" data-off-canvas-content>
               <div class="bg-img">
+              <!-- Top pagination -->
+        	      <div class="row align-justify pagination text-center hide" id="paginationTop" role="navigation" aria-label="Pagination">
+        	      	<div class="column small-6">
+        						<button class="button pagination-previous" aria-label="prev page">prev page</button>
+        					</div>
+        					<div class="column small-6">
+        						<button class="button pagination-next" aria-label="next page">next page</button>
+        					</div>
+        	      </div>
+        	      <!-- Meta data -->
+        	      <div class="row align-spaced meta-data" id="metaData"></div>
+        	      <!-- Content feed -->
         	      <div class="row small-up-1 medium-up-3 large-up-4 main-content" id="contentFeed"></div>
+        	      <!-- Bottom pagination -->
+        	      <div class="row align-justify pagination text-center hide" id="paginationTop" role="navigation" aria-label="Pagination">
+        	      	<div class="column small-6">
+        						<button class="button pagination-previous" aria-label="prev page">prev page</button>
+        					</div>
+        					<div class="column small-6">
+        						<button class="button pagination-next" aria-label="next page">next page</button>
+        					</div>
+        				</div>
               </div>
             </main>
             <!-- Footer goes in this container -->
@@ -156,7 +182,7 @@
         		    <div class="small-12 columns">
         		      <p class="slogan">TasteThatTap</p>
         		      <p class="links">
-        		        <a href="#">home</a>
+        		        <a href="http://localhost:5000/">home</a>
         		        <a href="#">about</a>
         		        <a href="#">blog</a>
         		        <a href="#">faq</a>
@@ -171,13 +197,21 @@
       </div>
     </div>
     <!-- Handlebars -->
-    <script id="searchBreweryQueryTemplate" type="text/x-handlebars-template">	
+    <script id="searchBrewerQueryTemplate" type="text/x-handlebars-template">	
       <div class="column">
-        <div class="callout">
+        <div class="callout search-brewery-query breweryId-{{breweryId}}">
           <h5 class="title"> {{breweryName}} </h5>
-          <p><img src=" {{breweryImages.squareLarge}} " alt="brewery image"></p>
-          <p class="lead"></p>
-          <p class="subheader"> {{breweryDescShort}} </p>
+          <p class="image"><img src=" {{breweryImages.squareLarge}} " alt="brewery image"></p>
+          <p><a class="website" href="{{breweryWebsite}}" target="blank"> {{breweryWebsiteDisplay}} </a></p>
+          <p class="established">Established: {{breweryEstablished}} </p>
+          <ul class="accordion" data-accordion data-allow-all-closed="true" role="tablist">
+            <li class="accordion-item">
+              <a href="#panel1" role="tab" class="accordion-title" id="panel1-heading" aria-controls="panel1">Description</a>
+              <div id="panel1" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel1-heading">
+                <p class="description"> {{breweryDesc}} </p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </script>
@@ -186,12 +220,64 @@
         <div class="callout search-geo-point breweryId-{{breweryId}}">
           <h5 class="title"> {{breweryName}} </h5>
           <p class="image"><img src=" {{breweryImages.squareLarge}} " alt="brewery image"></p>
-          <p class="location-type">Type:  {{breweryType}} </p>
-          <p class="location"> {{breweryLocality}} ,  {{breweryRegion}} </p>
-          <p class="distance">Distance from you:  {{breweryDistance}}  (mi.)</p>
-          <p class="description"> {{breweryDesc}} </p>
+          <p><a class="website" href="{{breweryWebsite}}" target="blank"> {{breweryWebsiteDisplay}} </a></p>      
+          <ul class="accordion" data-accordion role="tablist">
+            <li class="accordion-item is-active">
+              <a href="#panel1" role="tab" class="accordion-title" id="panel1-heading" aria-controls="panel1">General</a>
+              <div id="panel1" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel1-heading">
+                <p class="location-type"> {{breweryType}} </p>
+                <p class="location"> {{breweryLocality}} ,  {{breweryRegion}} </p>
+                <p class="distance">Distance: <span class="accent"> {{breweryDistance}}  (mi.)</span></p>
+              </div>
+            </li>
+            <li class="accordion-item">
+              <a href="#panel2" role="tab" class="accordion-title" id="panel2-heading" aria-controls="panel2">Description</a>
+              <div id="panel2" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel2-heading">
+                <p class="description"> {{breweryDesc}} </p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
+    </script>
+    <script id="searchBeerByStyleTemplate" type="text/x-handlebars-template">	
+      <div class="column">
+        <div class="callout search-geo-point breweryId-{{breweryId}}">
+          <h5 class="title"> {{breweryName}} </h5>
+          <p class="image"><img src=" {{breweryImages.squareLarge}} " alt="brewery image"></p>
+          <p><a class="website" href="{{breweryWebsite}}" target="blank"> {{breweryWebsiteDisplay}} </a></p>      
+          <ul class="accordion" data-accordion role="tablist">
+            <li class="accordion-item is-active">
+              <a href="#panel1" role="tab" class="accordion-title" id="panel1-heading" aria-controls="panel1">General</a>
+              <div id="panel1" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel1-heading">
+                <p class="location-type"> {{beerName}} </p>
+                <p class="location"> {{breweryLocality}} ,  {{breweryRegion}} </p>
+              </div>
+            </li>
+            <li class="accordion-item">
+              <a href="#panel2" role="tab" class="accordion-title" id="panel2-heading" aria-controls="panel2">Description</a>
+              <div id="panel2" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel2-heading">
+                <p class="description"> {{beerDesc}} </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </script>
+    <script id="styleCategoryTemplate" type="text/x-handlebars-template">
+    	<option value="{{styleCategory}}"> {{styleCategory}} </option>
+    </script>
+    <script id="styleNameTemplate" type="text/x-handlebars-template">
+    	<option value="{{styleName}}"> {{styleName}} </option>
+    </script>
+    <script id="metaDataTemplate" type="text/x-handlebars-template">
+    	<div class="column small-12 medium-8 large-6">
+    		<div class="callout">
+    			<p class="results">Results on page: <span class="accent"> {{totalResponses}} </span></p>
+    			<p class="total-pages">Total pages: <span class="accent"> {{numPages}} </span></p>
+    			<p class="current-page">Current page: <span class="accent"> {{currentPage}} </span></p>
+    		</div>
+    	</div>
     </script>
     <!-- /Handlebars -->
     <script src="assets/js/app.js"></script>

@@ -1,0 +1,21 @@
+<script id="searchBrewerQueryTemplate" type="text/x-handlebars-template">	
+  <div class="column">
+    <div class="callout search-brewery-query breweryId-{{{{raw}}}}{{breweryId}}{{{{/raw}}}}">
+      <h5 class="title">{{{{raw}}}} {{breweryName}} {{{{/raw}}}}</h5>
+      <p class="image"><img src="{{{{raw}}}} {{breweryImages.squareLarge}} {{{{/raw}}}}" alt="brewery image"></p>
+      <p><a class="website" href="{{{{raw}}}}{{breweryWebsite}}{{{{/raw}}}}" target="blank">{{{{raw}}}} {{breweryWebsiteDisplay}} {{{{/raw}}}}</a></p>
+      <p class="established">Established:{{{{raw}}}} {{breweryEstablished}} {{{{/raw}}}}</p>
+      <ul class="accordion" data-accordion data-allow-all-closed="true" role="tablist">
+        <li class="accordion-item">
+          {{!-- <!-- The tab title needs role="tab", an href, a unique ID, and aria-controls. --> --}}
+          <a href="#panel1" role="tab" class="accordion-title" id="panel1-heading" aria-controls="panel1">Description</a>
+          {{!-- <!-- The content pane needs an ID that matches the above href, role="tabpanel", data-tab-content, and aria-labelledby. --> --}}
+          <div id="panel1" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel1-heading">
+          {{!-- Second panel --}}
+            <p class="description">{{{{raw}}}} {{breweryDesc}} {{{{/raw}}}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</script>
