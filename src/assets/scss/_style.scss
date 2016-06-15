@@ -12,6 +12,24 @@
 	background-size: contain;
 }
 
+.landing-page {
+	.callout {
+		background: transparent;
+		top: 100px;
+		border: none;		
+	}
+	h2 {
+		font-family: 'Candal', sans-serif;
+		font-weight: 500;
+		margin-top: 1rem;
+		color: $beer;
+		font-size: 2rem;
+		@include breakpoint(large) {
+			font-size: 3.5rem;
+		}
+	}
+}
+
 .pagination {
 	margin: 0 auto;
 	.column {
@@ -23,21 +41,23 @@
 		display: inline-block;
 		margin-bottom: 0;
 		padding: 10px;
-		background: darken($lime, 15%);
+		background: darken($beer, 10%);
 		border-radius: $global-radius;
 		&:hover {
-			background: darken($lime, 5%);
+			background: darken($beer, 0%);
 		}		
 	}
 	.disabled {
 		opacity: 0.65;
 	}
-	.pagination-previous::before, .pagination-previous.disabled::before {
+	.pagination-previous::before, 
+	.pagination-previous.disabled::before {
 		content: '\00ab';
     display: inline-block;
     margin-right: 0.5rem;
 	}
-	.pagination-next::after, .pagination-next.disabled::after {
+	.pagination-next::after, 
+	.pagination-next.disabled::after {
 	content: '\00bb';
   display: inline-block;
   margin-left: 0.5rem;
@@ -53,7 +73,7 @@
 		border-radius: $global-radius;
 	}
 	.accent {
-		color: $lime;
+		color: $beer;
 	}	
 }
 
@@ -74,14 +94,13 @@
 			background: rgba(0, 0, 0, 0.85);
 			-webkit-transition: all 0.7s ease;
     	transition: all 0.7s ease;
-			//border: 1px solid $lime;
 			img {
 				-webkit-filter: grayscale(0);
 			}
 		}
 	}
 	.title {
-		//color: $lime;
+		//color: $beer;
 	}
 	.image img {
 		border-radius: $global-radius;
@@ -90,10 +109,10 @@
     -webkit-filter: grayscale(1);
 	}
 	.website {
-		color: $lime;
-		border-bottom: 1px dotted $lime;
+		color: $beer;
+		border-bottom: 1px dotted $beer;
 		&:hover {
-			border-bottom: 1px solid $lime;
+			border-bottom: 1px solid $beer;
 		}
 	}
 	.location-type {		
@@ -106,7 +125,7 @@
     line-height: 1.4;
 	}
 	.accent {
-		color: $lime;
+		color: $beer;
 	}
 	.description {
 		line-height: 1.6;
@@ -119,7 +138,7 @@
 			background: transparent;
 		}
 		.accordion-title {
-			color: $lime;
+			color: $beer;
 			padding: 1rem;
 			&:hover,
 			&:focus {

@@ -5,7 +5,8 @@ var cors = require("cors");
 var bodyParser = require("body-parser");
 
 var BreweryDb = require('brewerydb-node');
-var brewdb = new BreweryDb('a3bbf959e5e040fc05c170b0ddd3d205');
+//var brewdb = new BreweryDb('a3bbf959e5e040fc05c170b0ddd3d205');  //TasteThatTap
+var brewdb = new BreweryDb('8a639948bf208b5e80148767fcba2207');  //TasteThatTap-2
 
 var myData = [];
 var myStyleData = [];

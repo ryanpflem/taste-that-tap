@@ -7,8 +7,8 @@
 }
 
 .menu-icon:hover::after {
-	background: $lime;
-	box-shadow: 0 7px 0 $lime, 0 14px 0 $lime;
+	background: $beer;
+	box-shadow: 0 7px 0 $beer, 0 14px 0 $beer;
 }
 
 .off-canvas-wrapper {
@@ -41,7 +41,7 @@
 	}
 	.menu .active > a {
 		background: transparent;
-		color: $lime;
+		color: $beer;
 	}
 	.menu-text {
 		color: $white;
@@ -52,16 +52,16 @@
 	}
 	.button {
 		margin-bottom: 1rem;
-		background: darken($lime, 15%);
+		background: darken($beer, 10%);
 		border-radius: $global-radius;
 		&:hover {
-			background: darken($lime, 5%);
+			background: darken($beer, 0%);
 		}		
 	}
 	.menu  a {
 		color: $white;
 		&:hover {
-			color: $lime;
+			color: $beer;
 		}
 	}
 	.menu > li > a {

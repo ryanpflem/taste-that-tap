@@ -312,7 +312,7 @@ $(document).ready(function () {
 		 	})
 		setTimeout(function(){
 			getResponse(searchType);  //Exec getResponse fn
-		},2000);  //1 sec delay to account for server response latency
+		},1500);  //1 sec delay to account for server response latency
 	}
 
 	//Get query response from the server
@@ -570,13 +570,17 @@ $(document).ready(function () {
 
 	  	for (var i = 0; i < beers.length; i++) {
 	  		var beerName = beers[i].name;
-	  		var beerDesc = beers[i].style.description;
+	  		var beerDesc;
 	  		var breweryName;
 	  		var breweryImages;
 	  		var breweryWebsite;
 	  		var breweryWebsiteDisplay;
 	  		var breweryLocality;
 	  		var breweryRegion;
+
+	  		if (beers[i].style.description) {
+	  			beerDesc = beers[i].style.description;
+	  		}
 
 	  		if (beers[i].breweries) {	  			
 	  			breweryName = beers[i].breweries[0].name;
@@ -729,6 +733,7 @@ $(document).ready(function () {
 	    if (myData.length > 7) {
 	    	$bgImg.addClass('bg-img-repeat');  //Add bg-img-repeat class when more than 8 objects
 	    }
+	    $('#landingPage').addClass('hide');
 	    $contentFeed.append(newData);  //Append all the data in the $contentFeed
 	  }
 	  compileMetaData(myMetaData); //Compile meta data
